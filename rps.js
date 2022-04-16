@@ -22,11 +22,11 @@ function computerPlay() {
 
 // console.log(computerPlay());
 
-let computerValue = computerPlay(); 
-let playerValue = prompt("Select rock, paper or scissors: ");
+// let computerValue = computerPlay(); 
+// let playerValue = prompt("Select rock, paper or scissors: ");
 
-console.log(`Computer chooses ${computerValue}`);
-console.log(`Player chooses ${playerValue}`);
+// console.log(`Computer chooses ${computerValue}`);
+// console.log(`Player chooses ${playerValue}`);
 
 function rpsRound(playerSelection, computerSelection) {
     let playerUpper = playerSelection.toUpperCase();
@@ -38,18 +38,40 @@ function rpsRound(playerSelection, computerSelection) {
             || playerUpper === "SCISSORS" && computerUpper === "PAPER" 
             || playerUpper === "PAPER" && computerUpper === "ROCK") {
 
-            return(`Congrats, your ${playerSelection} wins against computer's ${computerSelection}!`)
+                score +=1;
+                return(`Congrats, your ${playerSelection} wins against computer's ${computerSelection}!`)
 
         } else {
+
+            score -= 1;
             return (`Sorry, your ${playerSelection} loses against computer's ${computerSelection}.`)
+
         }
     }
 }
 
-console.log(rpsRound(playerValue, computerValue));
+// console.log(rpsRound(playerValue, computerValue));
 
-// function game() {
-//     for (let i = 0; i = 5; i++) {
+function game() {
+    for (let i = 0; i < 5; i++) {
+        let computerValue = computerPlay(); 
+        let playerValue = prompt("Select rock, paper or scissors: ");
+        console.log(`Round ${i+1}!`)
+        console.log(`Computer chooses ${computerValue}`);
+        console.log(`Player chooses ${playerValue}`);
+        console.log(rpsRound(playerValue, computerValue));
+        console.log(`The current score is ${score}`);
+    }
+    
+    if (score > 0) {
+        console.log("The player wins!")
+    } else if (score < 0) {
+        console.log("The computer wins!");
+    } else {
+        console.log("Both sides were equally strong, draw!");
+    }
+}
 
-//     }
-// }
+let score = 0;
+
+game();
